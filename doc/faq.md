@@ -64,11 +64,11 @@
 
    JSON are commonly used in web applications for transferring structured data. It is also used as a file format for data persistence.
 
-2. Does RapidJSON conform to the JSON standard?
+3. Does RapidJSON conform to the JSON standard?
 
    Yes. RapidJSON is fully compliance with [RFC7159](http://www.ietf.org/rfc/rfc7159.txt) and [ECMA-404](http://www.ecma-international.org/publications/standards/Ecma-404.htm). It can handle corner cases, such as supporting null character and surrogate pairs in JSON strings.
 
-3. Does RapidJSON support relaxed syntax?
+4. Does RapidJSON support relaxed syntax?
 
    Currently no. RapidJSON only support the strict standardized format. Support on related syntax is under discussion in this [issue](https://github.com/Tencent/rapidjson/issues/36).
 
@@ -144,7 +144,7 @@
    
    Simple yet most efficient way to achieve that is to modify the `address` definition above to initialize it with allocator of the `person` document, then we just add the root member of the value:
    ~~~~~~~~~~cpp
-   Document address(person.GetAllocator());
+   Document address(&person.GetAllocator());
    ...
    person["person"].AddMember("address", address["address"], person.GetAllocator());
    ~~~~~~~~~~
@@ -236,7 +236,7 @@ Alternatively, if we don't want to explicitly refer to the root value of `addres
 
 4. What is BOM? How RapidJSON handle it?
 
-   [Byte order mark (BOM)](http://en.wikipedia.org/wiki/Byte_order_mark) sometimes reside at the beginning of file/stream to indiciate the UTF encoding type of it.
+   [Byte order mark (BOM)](http://en.wikipedia.org/wiki/Byte_order_mark) sometimes reside at the beginning of file/stream to indicate the UTF encoding type of it.
 
    RapidJSON's `EncodedInputStream` can detect/consume BOM. `EncodedOutputStream` can optionally write a BOM. See [Encoded Streams](doc/stream.md) for example.
 
